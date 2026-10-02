@@ -1,0 +1,301 @@
+:root {
+  --bg: #fbf0dc;
+  --bg-light: #fffaf0;
+  --ink: #5a3a2a;
+  --ink-soft: #8a6a58;
+  --coral: #ff7b6b;
+  --mint: #6fd8b2;
+  --sun: #ffc94a;
+  --sky: #7cc6f4;
+  --lilac: #b79cf0;
+  --card: #ffe3b8;
+  --font: "Jua", "Gowun Dodum", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font);
+  color: var(--ink);
+  background-color: var(--bg);
+  /* 스튜디오 조명: 위쪽에서 부드럽게 내려오는 빛 */
+  background-image:
+    radial-gradient(ellipse 80% 55% at 50% -5%, var(--bg-light) 0%, rgba(255, 250, 240, 0) 70%),
+    radial-gradient(ellipse 100% 40% at 50% 110%, rgba(190, 140, 90, 0.22) 0%, rgba(190, 140, 90, 0) 70%);
+  background-attachment: fixed;
+}
+
+.studio {
+  max-width: 880px;
+  margin: 0 auto;
+  padding-block: clamp(32px, 6vw, 72px);
+  padding-inline: 20px;
+}
+
+/* ---------- 점토 공통 ---------- */
+.clay {
+  position: relative;
+  flex: none;
+  filter: url(#clay-bump);
+  /* 위 왼쪽에서 오는 빛: 위쪽은 밝게, 아래쪽은 어둡게 */
+  box-shadow:
+    inset 10px 12px 18px rgba(255, 255, 255, 0.5),
+    inset -12px -16px 22px rgba(90, 40, 20, 0.22),
+    0 22px 22px -10px rgba(110, 70, 30, 0.35);
+}
+
+/* 손가락으로 꾹 누른 지문 자국 */
+.clay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    repeating-radial-gradient(ellipse 60% 85% at 28% 30%,
+      rgba(255, 255, 255, 0) 0 5px, rgba(110, 50, 20, 0.11) 5px 7px),
+    repeating-radial-gradient(ellipse 80% 55% at 78% 72%,
+      rgba(255, 255, 255, 0) 0 5px, rgba(110, 50, 20, 0.09) 5px 7px);
+  mix-blend-mode: multiply;
+}
+
+.clay span { position: absolute; }
+
+/* 눈 */
+.eye {
+  width: 17%;
+  aspect-ratio: 1;
+  top: 34%;
+  border-radius: 50%;
+  background: #fffdf6;
+  box-shadow: inset 0 -2px 3px rgba(90, 40, 20, 0.25);
+}
+.eye::after {
+  content: "";
+  position: absolute;
+  width: 52%;
+  height: 52%;
+  left: 26%;
+  top: 30%;
+  border-radius: 50%;
+  background: #4a2a1e;
+}
+.eye-l { left: 26%; }
+.eye-r { right: 26%; }
+.eye-one { width: 30%; left: 35%; top: 30%; }
+
+/* 입 */
+.mouth {
+  left: 50%;
+  bottom: 22%;
+  width: 22%;
+  height: 11%;
+  transform: translateX(-50%);
+  border-bottom: 5px solid #4a2a1e;
+  border-radius: 0 0 60% 60%;
+}
+
+/* 귀, 뿔 */
+.ear {
+  width: 26%;
+  aspect-ratio: 1;
+  top: -9%;
+  border-radius: 50%;
+  background: inherit;
+  box-shadow:
+    inset 4px 5px 8px rgba(255, 255, 255, 0.45),
+    inset -5px -6px 9px rgba(90, 40, 20, 0.22);
+}
+.ear-l { left: 8%; }
+.ear-r { right: 8%; }
+.nub {
+  width: 14%;
+  aspect-ratio: 1;
+  top: -9%;
+  border-radius: 50%;
+  background: var(--lilac);
+  box-shadow:
+    inset 3px 4px 6px rgba(255, 255, 255, 0.5),
+    inset -4px -5px 7px rgba(90, 40, 20, 0.22);
+}
+.nub-l { left: 26%; transform: rotate(-12deg); }
+.nub-r { right: 26%; transform: rotate(12deg); }
+
+/* 캐릭터 색깔/모양 */
+.c-coral { background: var(--coral); width: 128px; height: 120px; border-radius: 50% 50% 46% 46% / 58% 58% 42% 42%; }
+.c-mint  { background: var(--mint);  width: 148px; height: 140px; border-radius: 48% 52% 46% 54% / 55% 55% 45% 45%; }
+.c-sun   { background: var(--sun);   width: 112px; height: 150px; border-radius: 46% 46% 42% 42% / 40% 40% 60% 60%; }
+.c-sky   { background: var(--sky);   width: 132px; height: 126px; border-radius: 50% 50% 44% 44% / 56% 56% 44% 44%; }
+
+/* ---------- 머리말 ---------- */
+.hero { text-align: center; }
+
+.characters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(16px, 4vw, 36px);
+  margin-bottom: 36px;
+  padding-top: 14px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 8vw, 4rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-shadow: 0 3px 0 rgba(255, 255, 255, 0.7), 0 6px 10px rgba(110, 70, 30, 0.18);
+}
+
+.sub {
+  margin: 10px 0 0;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: var(--ink-soft);
+}
+
+/* ---------- 프로젝트 카드 ---------- */
+.section-title {
+  margin: 56px 0 18px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  padding: clamp(20px, 4vw, 32px);
+  border-radius: 38px 44px 40px 46px / 44px 38px 46px 40px;
+  color: inherit;
+  text-decoration: none;
+  /* 스톱모션처럼 뚝뚝 움직이게 */
+  transition: transform 0.24s steps(3);
+}
+
+/* 점토 질감은 카드 배경에만 입히고, 글씨는 깨끗하게 둔다 */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: var(--card);
+  filter: url(#clay-bump);
+  box-shadow:
+    inset 12px 14px 22px rgba(255, 255, 255, 0.55),
+    inset -14px -18px 26px rgba(150, 90, 30, 0.2),
+    0 26px 26px -12px rgba(110, 70, 30, 0.38);
+}
+
+.card > * { position: relative; z-index: 1; }
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-8px) rotate(-1.2deg);
+}
+
+.card:active,
+.card.squish {
+  transform: translateY(2px) scale(0.975, 0.95);
+}
+
+.card:focus-visible { outline: 4px solid var(--lilac); outline-offset: 6px; }
+
+.card-char { margin-top: 14px; }
+.card:hover .card-char { animation: hop 0.5s steps(1) infinite; }
+
+.card-body { flex: 1 1 260px; min-width: 0; }
+
+.tag {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--lilac);
+  color: #fff;
+  font-size: 0.9rem;
+  box-shadow: inset 2px 3px 5px rgba(255, 255, 255, 0.45), inset -2px -3px 5px rgba(60, 30, 120, 0.25);
+}
+
+.card h3 {
+  margin: 12px 0 8px;
+  font-size: clamp(1.8rem, 6vw, 2.4rem);
+  font-weight: 400;
+}
+
+.card p {
+  margin: 0 0 18px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  word-break: keep-all;
+}
+
+.go {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: var(--coral);
+  color: #fff;
+  font-size: 1.05rem;
+  box-shadow:
+    inset 3px 4px 7px rgba(255, 255, 255, 0.5),
+    inset -3px -5px 8px rgba(120, 30, 20, 0.28),
+    0 8px 10px -4px rgba(120, 40, 20, 0.4);
+}
+
+footer {
+  margin-top: 64px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+footer p { margin: 0; }
+
+/* ---------- 스톱모션 움직임: 부드럽지 않고 뚝뚝 끊기게 ---------- */
+.characters .clay { animation: wobble 0.9s steps(1) infinite; }
+.characters .c-mint { animation-delay: -0.3s; }
+.characters .c-sun { animation-delay: -0.6s; }
+
+@keyframes wobble {
+  0%   { transform: translateY(0) rotate(0deg) scale(1, 1); }
+  25%  { transform: translateY(-5px) rotate(-1.6deg) scale(0.99, 1.02); }
+  50%  { transform: translateY(0) rotate(1deg) scale(1.01, 0.99); }
+  75%  { transform: translateY(-3px) rotate(1.8deg) scale(1, 1.01); }
+}
+
+@keyframes hop {
+  0%   { transform: translateY(0) scale(1, 1); }
+  33%  { transform: translateY(-10px) scale(0.97, 1.04); }
+  66%  { transform: translateY(0) scale(1.04, 0.95); }
+}
+
+/* 움직임을 줄이도록 설정한 분들께는 가만히 */
+@media (prefers-reduced-motion: reduce) {
+  .characters .clay,
+  .card:hover .card-char { animation: none; }
+  .card { transition: none; }
+}
+
+/* ---------- 작은 화면 ---------- */
+@media (max-width: 520px) {
+  .c-coral { width: 100px; height: 94px; }
+  .c-mint  { width: 116px; height: 110px; }
+  .c-sun   { width: 88px;  height: 118px; }
+  .card { justify-content: center; text-align: center; }
+  .mouth { border-bottom-width: 4px; }
+}

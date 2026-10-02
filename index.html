@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 점토 표면(지문 자국 + 울퉁불퉁한 결)을 만드는 숨은 그림 도구 -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="clay-bump" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+      <feTurbulence id="clay-noise" type="fractalNoise" baseFrequency="0.45" numOctaves="2" seed="3" result="noise"/>
+      <feDiffuseLighting in="noise" lighting-color="#ffffff" surfaceScale="1.6" diffuseConstant="1" result="light">
+        <feDistantLight azimuth="225" elevation="58"/>
+      </feDiffuseLighting>
+      <feComposite in="light" in2="SourceGraphic" operator="arithmetic" k1="1.22" k2="0" k3="0" k4="0" result="lit"/>
+      <feComposite in="lit" in2="SourceAlpha" operator="in"/>
+    </filter>
+  </svg>
+
+  <div class="studio">
+
+    <header class="hero">
+      <div class="characters" aria-hidden="true">
+        <div class="clay c-coral">
+          <span class="nub nub-l"></span><span class="nub nub-r"></span>
+          <span class="eye eye-l"></span><span class="eye eye-r"></span>
+          <span class="mouth"></span>
+        </div>
+        <div class="clay c-mint">
+          <span class="ear ear-l"></span><span class="ear ear-r"></span>
+          <span class="eye eye-l"></span><span class="eye eye-r"></span>
+          <span class="mouth"></span>
+        </div>
+        <div class="clay c-sun">
+          <span class="eye eye-one"></span>
+          <span class="mouth"></span>
+        </div>
+      </div>
+      <h1>My Portfolio</h1>
+      <p class="sub">점토로 빚은 작은 프로젝트 모음</p>
+    </header>
+
+    <main>
+      <h2 class="section-title">Projects</h2>
+
+      <div class="cards">
+        <a class="card" href="https://github.com/schon0508-art/autogenrate" target="_blank" rel="noopener" aria-label="홍보자동화 프로젝트 보러가기">
+          <div class="clay c-sky card-char" aria-hidden="true">
+            <span class="ear ear-l"></span><span class="ear ear-r"></span>
+            <span class="eye eye-l"></span><span class="eye eye-r"></span>
+            <span class="mouth"></span>
+          </div>
+          <div class="card-body">
+            <span class="tag">자영업 자동화</span>
+            <h3>홍보자동화</h3>
+            <p>매장 사진을 인스타그램용으로 바꾸고, 내 말투로 홍보 문구를 만들어주는 프로그램이에요.</p>
+            <span class="go">프로젝트 보러가기 →</span>
+          </div>
+        </a>
+      </div>
+    </main>
+
+    <footer>
+      <p>손으로 꾹꾹 눌러 만들었어요</p>
+    </footer>
+
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
